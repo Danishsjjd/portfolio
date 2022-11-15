@@ -6,8 +6,34 @@
   body {
     overflow-x: hidden;
     font-family: "Poppins", sans-serif;
+    background-color: theme("colors.black");
+    color: theme("colors.white");
   }
   :root {
     --yellow: 60 100% 50%;
+  }
+  .blur-bg {
+    @apply absolute rounded-full blur-2xl;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    background: theme(colors.black);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--yellow));
+    border-radius: 50px;
+  }
+  ::selection {
+    background-color: hsl(var(--yellow));
+    color: theme("colors.black");
+  }
+  .you-know {
+    height: 40vh;
+    margin-left: -150vw;
+    position: absolute;
+    transform-origin: 50% 0;
+    transform: rotate(18deg);
+    width: 300vw;
+    background-color: theme(colors.slate.900 / 73%);
   }
 }

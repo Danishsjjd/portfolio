@@ -1,5 +1,15 @@
+import Header from "./layout/Header";
+import About from "./sections/About";
+import Hero from "./sections/Hero";
+
 function App() {
-  return <h1 className="bg-red-400 text-white">Hello world</h1>;
+  return (
+    <>
+      <Header />
+      <Hero />
+      <About />
+    </>
+  );
 }
 
 export default App;
