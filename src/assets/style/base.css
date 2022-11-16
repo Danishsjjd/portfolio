@@ -20,20 +20,14 @@
     background: theme(colors.black);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--yellow));
+    background-color: theme("colors.yellow");
     border-radius: 50px;
   }
   ::selection {
-    background-color: hsl(var(--yellow));
+    background-color: theme("colors.yellow");
     color: theme("colors.black");
   }
-  .you-know {
-    height: 40vh;
-    margin-left: -150vw;
-    position: absolute;
-    transform-origin: 50% 0;
-    transform: rotate(18deg);
-    width: 300vw;
-    background-color: theme(colors.slate.900 / 73%);
+  .apply-bg {
+    background: url("/my.jpg") 30% center/ cover no-repeat;
   }
 }

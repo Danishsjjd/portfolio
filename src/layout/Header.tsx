@@ -5,8 +5,8 @@ const links = ["About", "Project", "Contact"];
 
 const Header = (props: Props) => {
   return (
-    <header className="sticky top-0 z-10">
-      <div className="relative top-4 mx-auto flex max-w-6xl justify-between rounded-3xl bg-black/50 p-7 backdrop-blur-sm">
+    <header className="sticky top-0 z-50">
+      <div className="relative top-4 mx-auto flex max-w-6xl justify-between rounded-3xl bg-black/50 p-7 backdrop-blur-md">
         <div>
           <a href="#">
             <img src={logo} alt="logo" className="aspect-square w-8" />

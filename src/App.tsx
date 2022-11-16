@@ -1,13 +1,15 @@
 import Header from "./layout/Header";
-import About from "./sections/About";
 import Hero from "./sections/Hero";
+import Projects from "./sections/Projects";
 
 function App() {
   return (
     <>
       <Header />
       <Hero />
-      <About />
+      <div className="mt-28 flex flex-col gap-28">
+        <Projects />
+      </div>
     </>
   );
 }
