@@ -1,47 +1,73 @@
-import { useEffect, useRef } from "react";
 import VanillaTilt from "vanilla-tilt";
-type Props = {};
+import { MutableRefObject, useEffect, useRef } from "react";
 
-const Projects = (props: Props) => {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+import { Card, cards } from "../constants/card";
+
+type UseRefType = HTMLAnchorElement | null;
+
+const Projects = () => {
+  const cardRefs = useRef<UseRefType[]>([]);
 
   useEffect(() => {
     cardRefs.current.map((card) => {
       if (card)
         VanillaTilt.init(card, {
           max: 25,
-          speed: 400,
+          speed: 300,
           glare: true,
-          "max-glare": 0.3,
+          "max-glare": 0.5,
+          transition: true,
         });
     });
   }, [cardRefs.current]);
   return (
     <div className="mx-auto max-w-7xl px-8">
       <h3 className="text-left text-3xl font-medium underline">Projects</h3>
-      {/* card */}
-      <div className="relative grid grid-cols-3 gap-14" data-tilt>
-        <div
-          className="group relative flex items-start justify-end overflow-hidden rounded-md border-2 border-white [&>*]:transition [&>*]:duration-300"
-          ref={(el) => cardRefs?.current?.push(el)}
-        >
-          <img
-            src="http://source.unsplash.com/random"
-            className="absolute inset-0 blur-0 group-hover:blur-md"
+      <div className="relative mt-10 grid grid-cols-3 gap-6">
+        {cards.map(({ description, img, title, href }) => (
+          <SingleCard
+            cardRefs={cardRefs}
+            description={description}
+            img={img}
+            title={title}
+            key={title}
+            href={href}
           />
-          <div className="translate-y-[100%] p-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-            <h2>MUSSELS SOUP</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <a href="#">Order Now</a>
-          </div>
-        </div>
-        {/* card end */}
+        ))}
       </div>
     </div>
   );
 };
+
+interface SingleCardType extends Card {
+  cardRefs: MutableRefObject<UseRefType[]>;
+}
+
+function SingleCard({
+  description,
+  img,
+  title,
+  cardRefs,
+  href,
+}: SingleCardType) {
+  return (
+    <a
+      href={href}
+      rel="noopener noreferrer"
+      // @ts-ignore
+      style={{ "--image-url": `url(${img})` }}
+      className={`card group relative block h-80 overflow-hidden rounded-lg outline outline-2 -outline-offset-8 outline-white/0 transition-all duration-300 before:bg-[image:var(--image-url)] focus-within:outline-offset-2 focus-within:outline-gray-300 focus-within:before:blur-[1px] hover:z-30 hover:outline-offset-2 hover:outline-gray-300 hover:before:blur-[1px]`}
+      target={"_blank"}
+      ref={(el) => cardRefs?.current?.push(el)}
+    >
+      <div className="card-content relative flex h-full w-full flex-col items-start justify-end p-6 font-Lexend">
+        <h2 className="title text-2xl font-semibold group-hover:underline">
+          {title}
+        </h2>
+        <p className=" text-xl font-medium text-yellow">{description}</p>
+      </div>
+    </a>
+  );
+}
 
 export default Projects;
