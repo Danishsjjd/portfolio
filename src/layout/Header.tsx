@@ -1,9 +1,9 @@
 import logo from "../assets/images/logo.svg";
-type Props = {};
+import LinkButton from "../components/LinkButton";
 
 const links = ["About", "Project", "Contact"];
 
-const Header = (props: Props) => {
+const Header = () => {
   return (
     <header className="sticky top-0 z-50">
       <div className="relative top-2 mx-auto flex max-w-6xl justify-between rounded-3xl bg-black/50 p-7 backdrop-blur-md">
@@ -17,14 +17,7 @@ const Header = (props: Props) => {
             <ul className="flex gap-3">
               {links.map((link) => (
                 <li key={link}>
-                  <button className="scale-100 transition active:scale-75 ">
-                    <a
-                      href={`#${link}`}
-                      className=" rounded-md p-4 font-medium text-yellow hover:animate-bg hover:underline "
-                    >
-                      {link}
-                    </a>
-                  </button>
+                  <LinkButton to={link}>{link}</LinkButton>
                 </li>
               ))}
             </ul>

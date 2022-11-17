@@ -1,8 +1,9 @@
-type Props = {};
-
-const Hero = (props: Props) => {
+const About = () => {
   return (
-    <div className="relative mx-auto flex  min-h-[calc(100vh-88px)] max-w-7xl items-center justify-between gap-28  px-14">
+    <div
+      className="relative mx-auto flex  min-h-[calc(100vh-88px)] max-w-7xl items-center justify-between gap-28  px-14"
+      id="About"
+    >
       <div className="blur-bg -left-60 -top-32 aspect-square w-[500px] bg-yellow/30" />
       {/* arrow */}
       <div className="absolute inset-0 z-10 flex items-center justify-center text-xl">
@@ -26,4 +27,4 @@ const Hero = (props: Props) => {
   );
 };
 
-export default Hero;
+export default About;

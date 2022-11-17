@@ -12,10 +12,10 @@ const links: Links[] = [
 
 const Contact = () => {
   return (
-    <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-8">
+    <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-8" id="Contact">
       {links.map(({ href, title }) => (
         <button key={title}>
-          <a href=""></a>
+          <a href={href}>{title}</a>
         </button>
       ))}
     </div>

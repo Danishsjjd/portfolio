@@ -2,7 +2,7 @@ import { Card, cards } from "../constants/card";
 
 const Projects = () => {
   return (
-    <div className="mx-auto max-w-7xl px-8">
+    <div className="mx-auto max-w-7xl px-8" id="Project">
       <h3 className="text-left text-3xl font-medium underline">Projects</h3>
       <div className="relative mt-10 grid grid-cols-3 gap-6">
         {cards.map(({ description, img, title, href }) => (
