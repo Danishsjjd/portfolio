@@ -1,4 +1,5 @@
 import Header from "./layout/Header";
+import Contact from "./sections/Contact";
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 
@@ -7,8 +8,9 @@ function App() {
     <>
       <Header />
       <Hero />
-      <div className="mt-28 flex flex-col gap-28">
+      <div className="my-52 flex flex-col gap-40">
         <Projects />
+        <Contact />
       </div>
     </>
   );
