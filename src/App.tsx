@@ -2,16 +2,16 @@ import Header from "./layout/Header";
 import Contact from "./sections/Contact";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
+import Footer from "./layout/Footer";
 
 function App() {
   return (
     <>
       <Header />
       <About />
-      <div className="my-52 flex flex-col gap-40">
-        <Projects />
-        <Contact />
-      </div>
+      <Projects />
+      <Contact />
+      <Footer />
     </>
   );
 }

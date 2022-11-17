@@ -6,19 +6,12 @@ type Props = {
   to: string;
   className?: string;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
-  Component?: any;
 };
 
-const LinkButton = ({
-  children,
-  to,
-  className,
-  setIsOpen,
-  Component = Link,
-}: Props) => {
+const LinkButton = ({ children, to, className, setIsOpen }: Props) => {
   return (
     <button className="scale-100 transition active:scale-75">
-      <Component
+      <Link
         to={`${to}`}
         spy
         activeClass={"animate-bg underline"}
@@ -32,7 +25,7 @@ const LinkButton = ({
         }}
       >
         {children}
-      </Component>
+      </Link>
     </button>
   );
 };
