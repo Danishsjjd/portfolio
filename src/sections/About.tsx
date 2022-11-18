@@ -1,3 +1,5 @@
+import downArrow from "../assets/images/down-arrow.svg";
+
 const About = () => {
   return (
     <div
@@ -7,7 +9,24 @@ const About = () => {
       <div className="blur-bg -left-60 -top-32 aspect-square w-[500px] bg-yellow/30" />
       {/* arrow */}
       <div className="absolute inset-0 z-10 flex items-center justify-center text-xl">
-        <div className="sticky top-[95vh] text-red-400">hell yes</div>
+        <div className="sticky top-[95vh] text-red-400">
+          <div
+            className="cursor-pointer rounded-full bg-yellow p-4"
+            onClick={() => {
+              window.scrollTo({
+                top: document.getElementById("Projects")?.offsetTop,
+                behavior: "smooth",
+              });
+            }}
+          >
+            <img
+              src={downArrow}
+              alt="goto next section"
+              className="relative isolate z-10"
+            />
+            <div className="absolute inset-0 animate-ping rounded-full bg-yellow" />
+          </div>
+        </div>
       </div>
       {/* content div */}
       <div className="z-20 self-start pt-14 lg:sticky lg:top-8 lg:pt-20">

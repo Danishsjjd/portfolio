@@ -3,14 +3,18 @@ import { Link } from "react-scroll";
 import logo from "../assets/images/logo.svg";
 import Dropdown from "../components/Dropdown";
 import LinkButton from "../components/LinkButton";
-import barsSolid from "../assets/images/bars-solid.svg";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const links: string[] = ["About", "Projects"];
 
 const GlowBtn = () => (
-  <button className="btn-glow px-3 uppercase text-yellow">
-    <Link to="Contact">Contact</Link>
+  <button className="btn-glow !cursor-default px-3 uppercase text-yellow">
+    <Link
+      to="Contact"
+      className="grid h-full w-full cursor-pointer place-items-center"
+    >
+      Contact
+    </Link>
   </button>
 );
 

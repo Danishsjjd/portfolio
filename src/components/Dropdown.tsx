@@ -13,7 +13,7 @@ export default function DropdownMenu({ tags }: Props) {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          className="inline-flex justify-center rounded-md border border-zinc-400 px-2 py-2 text-sm font-medium shadow-sm transition-all hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
+          className="inline-flex justify-center rounded-md border border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm  transition-all hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-gray-100"
           aria-label="menu"
         >
           <img src={IoMenu} alt="" className="h-5 w-5" />
@@ -29,7 +29,7 @@ export default function DropdownMenu({ tags }: Props) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-zinc-400 rounded-md border border-zinc-400 bg-orange-50 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-zinc-700 dark:border-zinc-700 dark:bg-zinc-800">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right  divide-zinc-700 rounded-md  border border-zinc-700 bg-zinc-800 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             <div className="px-3 py-2 text-xs font-bold uppercase">
               Navigation
