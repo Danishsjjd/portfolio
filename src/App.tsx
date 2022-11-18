@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "./layout/Header";
 import Contact from "./sections/Contact";
 import About from "./sections/About";

@@ -4,6 +4,7 @@ import logo from "../assets/images/logo.svg";
 import Dropdown from "../components/Dropdown";
 import LinkButton from "../components/LinkButton";
 import barsSolid from "../assets/images/bars-solid.svg";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const links: string[] = ["About", "Projects"];
 
@@ -14,8 +15,34 @@ const GlowBtn = () => (
 );
 
 const Header = () => {
+  const [isGoingUp, setIsGoingUp] = useState(true);
+  // todo: show and hide header while scrolling
+  let scroll = useRef(0);
+
+  const activeLink = useCallback(() => {
+    if (window.scrollY > scroll.current) setIsGoingUp(false);
+    else setIsGoingUp(true);
+
+    scroll.current = window.scrollY;
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: document.getElementById(window.location.hash.slice(1))?.offsetTop,
+      behavior: "smooth",
+    });
+    window.addEventListener("scroll", activeLink);
+    return () => {
+      window.removeEventListener("scroll", activeLink);
+    };
+  }, [activeLink]);
+
   return (
-    <header className="sticky top-0 z-50">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isGoingUp ? "translate-y-0" : "-translate-y-[110%]"
+      }`}
+    >
       <div className="mx-auto max-w-6xl px-12">
         <div className="relative top-2 flex w-full items-center  justify-between rounded-3xl bg-black/50 p-4 backdrop-blur-md">
           <div>

@@ -150,7 +150,7 @@
     }
 
     .card-content {
-      transform: translateY(calc(100% - 13.5rem));
+      transform: translateY(calc(100% - 14rem));
     }
     .card-content > *:not(.title) {
       opacity: 0;

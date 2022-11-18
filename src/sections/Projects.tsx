@@ -26,14 +26,16 @@ function SingleCard({ description, img, title, href }: Card) {
       rel="noopener noreferrer"
       // @ts-ignore
       style={{ "--image-url": `url(${img})` }}
-      className={`card group relative block h-96 overflow-hidden rounded-lg outline outline-2 -outline-offset-8 outline-white/0 transition-all duration-300 before:bg-[image:var(--image-url)] focus-within:outline-offset-2 focus-within:outline-gray-300 focus-within:before:blur-[1px] hover:z-30 hover:outline-offset-2 hover:outline-gray-300 hover:before:blur-[1px] sm:h-80`}
+      className={`card group relative block h-96 overflow-hidden rounded-lg outline outline-2 -outline-offset-8 outline-white/0 transition-all duration-300 before:bg-[image:var(--image-url)] focus-within:outline-offset-2 focus-within:outline-gray-300 hover:z-30 hover:outline-offset-2 hover:outline-gray-300 sm:focus-within:before:blur-[1px] sm:hover:before:blur-[1px] lg:h-[340px]`}
       target={"_blank"}
     >
-      <div className="card-content relative flex h-full w-full flex-col items-start justify-end p-3 font-Lexend lg:p-6">
-        <h2 className="title rounded px-2 py-1 text-xl font-semibold decoration-yellow backdrop-blur-sm line-clamp-1 group-focus-within:bg-black/0 group-focus-within:!p-0 group-focus-within:underline group-hover:bg-black/0 group-hover:!p-0 group-hover:underline sm:bg-black/70 lg:text-2xl">
+      <div className="card-content relative flex h-full w-full flex-col items-start justify-end font-Lexend ">
+        <h2 className="title mx-3 rounded bg-black/70 px-2 py-1 text-xl font-semibold decoration-yellow line-clamp-1 group-focus-within:bg-black/0 group-focus-within:!p-0 group-focus-within:underline group-hover:underline sm:backdrop-blur-sm sm:group-hover:bg-black/0 sm:group-hover:!p-0 lg:text-2xl">
           {title}
         </h2>
-        <p className=" text-xl font-medium text-yellow">{description}</p>
+        <p className="!mt-0 max-h-56 touch-pan-y overflow-y-auto overscroll-contain p-3 text-lg font-medium text-yellow sm:max-h-32 sm:min-h-[128px] sm:text-xl sm:group-focus-within:max-h-64 sm:group-focus-within:min-h-min sm:group-hover:max-h-64 sm:group-hover:min-h-min lg:p-6">
+          {description}
+        </p>
       </div>
     </a>
   );
