@@ -2,8 +2,11 @@ import {
   useForm,
   UseFormRegister,
   RegisterOptions,
-  FieldErrors,
+  Path,
+  DeepMap,
+  FieldError,
 } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 import arrow from "../assets/images/arrow.svg";
 type Links = {
@@ -44,7 +47,6 @@ const Contact = () => {
         Or contact me directly
       </h3>
       <ContactForm />
-      <Danish data={"str"} />
     </div>
   );
 };
@@ -68,7 +70,7 @@ function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 ">
-        <Input
+        <Input<FormData>
           name="name"
           register={register}
           title={"Enter Full Name"}
@@ -76,7 +78,7 @@ function ContactForm() {
           validations={{ required: "Please Type Your Name" }}
           errors={errors}
         />
-        <Input
+        <Input<FormData>
           name="email"
           register={register}
           title={"Your Email"}
@@ -107,17 +109,17 @@ function ContactForm() {
   );
 }
 
-type InputProps = {
+type InputProps<T extends {}> = {
   title: string;
   type: React.HTMLInputTypeAttribute;
-  name: keyof FormData;
-  register: UseFormRegister<FormData>;
+  errors: Partial<DeepMap<T, FieldError>>;
+  name: Path<T>;
+  register: UseFormRegister<T>;
   className?: string;
   validations?: RegisterOptions;
-  errors: FieldErrors<FormData>;
 };
 
-function Input({
+const Input = <T extends {}>({
   title,
   type,
   className,
@@ -125,7 +127,7 @@ function Input({
   register,
   validations,
   errors,
-}: InputProps) {
+}: InputProps<T>) => {
   return (
     <label className="rounded-lg px-4 pt-2 pb-4 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
       <h3 className="pb-2 font-Lexend">{title}</h3>
@@ -136,18 +138,15 @@ function Input({
         }`}
         {...register(name, validations)}
       />
-      <p className="mt-1 text-red-300">{errors?.[name]?.message}</p>
+      <ErrorMessage
+        errors={errors}
+        name={name as any}
+        render={({ message }) => {
+          return <p className="mt-1 text-red-300">{message}</p>;
+        }}
+      />
     </label>
   );
-}
-
-interface Data<T> {
-  data: T;
-}
-
-function Danish<T extends unknown>({ data }: Data<T>) {
-  if (typeof data === "string") return <div>{data}</div>;
-  return <div>no string found in given dato</div>;
-}
+};
 
 export default Contact;

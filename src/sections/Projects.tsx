@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, cards } from "../constants/card";
 
 const Projects = () => {
@@ -24,8 +25,7 @@ function SingleCard({ description, img, title, href }: Card) {
     <a
       href={href}
       rel="noopener noreferrer"
-      // @ts-ignore
-      style={{ "--image-url": `url(${img})` }}
+      style={{ "--image-url": `url(${img})` } as React.CSSProperties}
       className={`card group relative block h-96 overflow-hidden rounded-lg outline outline-2 -outline-offset-8 outline-white/0 transition-all duration-300 before:bg-[image:var(--image-url)] focus-within:outline-offset-2 focus-within:outline-gray-300 hover:z-30 hover:outline-offset-2 hover:outline-gray-300 sm:focus-within:before:blur-[1px] sm:hover:before:blur-[1px] lg:h-[340px]`}
       target={"_blank"}
     >
