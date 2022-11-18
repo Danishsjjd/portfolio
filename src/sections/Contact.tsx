@@ -7,6 +7,8 @@ import {
   FieldError,
 } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import emailjs from "@emailjs/browser";
+import { DetailedHTMLProps, InputHTMLAttributes, useRef } from "react";
 
 import arrow from "../assets/images/arrow.svg";
 type Links = {
@@ -62,8 +64,24 @@ function ContactForm() {
     formState: { errors },
     register,
     handleSubmit,
+    reset,
   } = useForm<FormData>({});
-  const onSubmit = (data: FormData) => console.log(data);
+
+  const onSubmit = (data: FormData) => {
+    console.log("sending");
+    emailjs
+      .send("service_g3a0u92", "template_r92f03v", data, "5p66bB_WiHK1mjJkZ")
+      .then(
+        (result) => {
+          console.log(result.text);
+          reset();
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <form
       className="my-8 space-y-1 sm:space-y-3"
@@ -83,7 +101,13 @@ function ContactForm() {
           register={register}
           title={"Your Email"}
           type="email"
-          validations={{ required: "Enter Your email" }}
+          validations={{
+            required: "Enter Your email",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "invalid email address",
+            },
+          }}
           errors={errors}
         />
       </div>
@@ -93,7 +117,7 @@ function ContactForm() {
           className={`w-full rounded-md bg-yellow/20 p-4 outline-none `}
           {...register("message", {
             required: "Please explain your message",
-            minLength: { message: "enter bro", value: 5 },
+            minLength: { message: "Explain Your Message", value: 8 },
           })}
           rows={5}
         ></textarea>
@@ -117,7 +141,10 @@ type InputProps<T extends {}> = {
   register: UseFormRegister<T>;
   className?: string;
   validations?: RegisterOptions;
-};
+} & Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "name"
+>;
 
 const Input = <T extends {}>({
   title,
@@ -127,6 +154,7 @@ const Input = <T extends {}>({
   register,
   validations,
   errors,
+  ...props
 }: InputProps<T>) => {
   return (
     <label className="rounded-lg px-4 pt-2 pb-4 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
@@ -137,6 +165,7 @@ const Input = <T extends {}>({
           className ? className : ""
         }`}
         {...register(name, validations)}
+        {...props}
       />
       <ErrorMessage
         errors={errors}
