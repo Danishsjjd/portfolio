@@ -20,7 +20,6 @@ const GlowBtn = () => (
 
 const Header = () => {
   const [isGoingUp, setIsGoingUp] = useState(true);
-  // todo: show and hide header while scrolling
   let scroll = useRef(0);
 
   const activeLink = useCallback(() => {
