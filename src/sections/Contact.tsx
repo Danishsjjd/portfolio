@@ -9,6 +9,7 @@ import {
 import { ErrorMessage } from "@hookform/error-message";
 import emailjs from "@emailjs/browser";
 import { DetailedHTMLProps, InputHTMLAttributes, useRef } from "react";
+import { toast } from "react-hot-toast";
 
 import arrow from "../assets/images/arrow.svg";
 type Links = {
@@ -68,18 +69,23 @@ function ContactForm() {
   } = useForm<FormData>({});
 
   const onSubmit = (data: FormData) => {
-    console.log("sending");
-    emailjs
-      .send("service_g3a0u92", "template_r92f03v", data, "5p66bB_WiHK1mjJkZ")
-      .then(
-        (result) => {
-          console.log(result.text);
-          reset();
-        },
-        (error) => {
-          console.log(error.text);
+    toast
+      .promise(
+        emailjs.send(
+          "service_g3a0u92",
+          "template_r92f03v",
+          data,
+          "5p66bB_WiHK1mjJkZ"
+        ),
+        {
+          loading: "Sending...",
+          success: <b>Email Sent. Thanks!</b>,
+          error: <b>problem while sending an email</b>,
         }
-      );
+      )
+      .then(() => {
+        reset();
+      });
   };
 
   return (

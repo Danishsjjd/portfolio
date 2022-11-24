@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import Header from "./layout/Header";
 import Contact from "./sections/Contact";
 import About from "./sections/About";
@@ -8,6 +8,7 @@ import Footer from "./layout/Footer";
 function App() {
   return (
     <>
+      <Toaster position="bottom-right" />
       <Header />
       <About />
       <Projects />
