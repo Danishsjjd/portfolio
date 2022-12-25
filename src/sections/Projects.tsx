@@ -1,28 +1,27 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { Card, cards } from "../constants/card";
+import Card from "../components/card/Card";
+import { Card as CardType, cards } from "../constants/card";
 
 const Projects = () => {
   return (
     <div className="mx-auto max-w-7xl px-8 pt-44" id="Projects">
       <h3 className="text-left text-3xl font-medium underline">Projects</h3>
-      <div className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {cards.map(({ description, img, title, href, isLiveMsg }) => (
-          <SingleCard
-            description={description}
-            img={img}
-            title={title}
-            key={title}
-            href={href}
-            isLiveMsg={isLiveMsg}
-          />
+      <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {cards.map((card) => (
+          <Card key={card.title} {...card} />
         ))}
-      </div>
+      </ul>
+      <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {cards.map((card) => (
+          <SingleCard key={card.id} {...card} />
+        ))}
+      </ul>
     </div>
   );
 };
 
-function SingleCard({ description, img, title, href, isLiveMsg }: Card) {
+function SingleCard({ description, img, title, href, isLiveMsg }: CardType) {
   const isLive = !isLiveMsg;
   return (
     <a
