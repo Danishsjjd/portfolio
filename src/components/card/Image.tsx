@@ -1,14 +1,12 @@
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction } from "react";
 import { closeSpring, openSpring } from "./animation";
 
 interface Props {
-  id: string;
   isSelected: boolean;
   img: string;
 }
 
-export const Image = ({ id, img, isSelected }: Props) => {
+export const Image = ({ img, isSelected }: Props) => {
   return (
     // w-screen
     <motion.div

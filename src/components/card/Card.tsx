@@ -1,4 +1,4 @@
-import { animate, motion, useMotionValue, Variants } from "framer-motion";
+import { animate, motion, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -79,14 +79,14 @@ const Card = ({ id, title, description, img }: CardData) => {
           dragConstraints={constraints}
           onDragEnd={checkSwipeToDismiss}
         >
-          <Image id={id} img={img} isSelected={isSelected} />
-          <Title title={title} isSelected={isSelected} />
+          <Image img={img} isSelected={isSelected} />
           <ContentPlaceholder desc={description} isSelected={isSelected} />
         </motion.div>
       </motion.div>
       {!isSelected && (
         <Link to={`/project/${id}`} className={"absolute inset-0"} />
       )}
+      <Title title={title} isSelected={isSelected} />
     </motion.li>
   );
 };

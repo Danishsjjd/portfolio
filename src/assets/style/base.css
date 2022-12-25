@@ -92,7 +92,7 @@
     }
   }
 
-  /* card */
+  /* card + cu-li */
   .card:after,
   .cu-li:after {
     content: "";

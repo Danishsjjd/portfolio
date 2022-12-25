@@ -1,26 +1,20 @@
-import { motion } from "framer-motion";
-import { closeSpring, openSpring } from "./animation";
-
 type Props = {
   title: string;
   isSelected: boolean;
 };
 
 export const Title = ({ title, isSelected }: Props) => {
-  const x = isSelected ? 30 : 15;
-  const y = x;
-
+  // title
   return (
-    <motion.div
-      className="absolute top-0 left-0 max-w-xs"
-      initial={false}
-      animate={{ x, y }}
-      style={{ originX: 0, originY: 0 }}
-      layout
-      transition={{ ...(isSelected ? openSpring : closeSpring) }}
+    <div
+      className={`absolute bottom-6 left-0 mx-3 max-w-xs rounded bg-black/70 px-2 py-1 text-xl font-semibold decoration-yellow transition-all  duration-300 line-clamp-1 sm:backdrop-blur-sm lg:text-2xl ${
+        isSelected
+          ? "translate-x-2 opacity-0"
+          : "translate-x-0 opacity-100 delay-1000"
+      }`}
+      style={{ zIndex: 1 }}
     >
-      <span className="uppercase text-white">Projects</span>
-      <h2>{title}</h2>
-    </motion.div>
+      {title}
+    </div>
   );
 };
