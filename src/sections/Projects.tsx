@@ -23,8 +23,6 @@ const Projects = () => {
 };
 
 function SingleCard({ description, img, title, href, isLiveMsg }: Card) {
-  console.log(!isLiveMsg ? href : "#");
-  console.log(isLiveMsg);
   const isLive = !isLiveMsg;
   return (
     <a
