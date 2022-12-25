@@ -1,5 +1,5 @@
-import { animate, motion, useMotionValue } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { animate, motion, useMotionValue, Variants } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Card as CardData } from "../../constants/card";
@@ -18,7 +18,8 @@ const Card = ({ id, title, description, img }: CardData) => {
 
   const navigate = useNavigate();
   const y = useMotionValue(0);
-  const zIndex = useMotionValue(isSelected ? 2 : 0);
+  const zIndex = useMotionValue(isSelected ? 10 : 0);
+  const [overflow, setOverflow] = useState(true);
 
   const cardRef = useRef(null);
   const constraints = useScrollConstraints(cardRef, isSelected);
@@ -29,9 +30,11 @@ const Card = ({ id, title, description, img }: CardData) => {
 
   function checkZIndex() {
     if (isSelected) {
-      zIndex.set(10);
+      zIndex.set(99999);
+      setOverflow(false);
     } else {
       zIndex.set(0);
+      setOverflow(true);
     }
   }
 
@@ -44,7 +47,16 @@ const Card = ({ id, title, description, img }: CardData) => {
   useWheelScroll(containerRef, y, constraints, checkSwipeToDismiss, isSelected);
 
   return (
-    <motion.li ref={containerRef} className={"relative h-96 w-full"} layout>
+    <motion.li
+      ref={containerRef}
+      className={`relative h-96 w-full rounded-2xl  lg:h-[340px] ${
+        overflow
+          ? "cu-li overflow-hidden outline outline-2 outline-white/0 transition-all duration-300 hover:outline-offset-2 hover:outline-gray-300"
+          : ""
+      }`}
+      layout
+      style={{ zIndex }}
+    >
       <Overlay isSelected={isSelected} />
       <motion.div
         className={`pointer-events-none block h-full w-full ${
