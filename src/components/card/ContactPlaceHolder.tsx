@@ -2,19 +2,18 @@ import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
 import arrow from "../../assets/images/arrow.svg";
-import LinkButton from "../LinkButton";
 import { closeSpring, openSpring } from "./animation";
 
 export const ContentPlaceholder = ({
   desc,
   isSelected,
   href,
-  isLive,
+  notLive,
 }: {
   desc: string;
   isSelected: boolean;
   href: string;
-  isLive?: string;
+  notLive?: string;
 }) => {
   return (
     <motion.div
@@ -26,12 +25,16 @@ export const ContentPlaceholder = ({
         {/* link-btn */}
         <button className="scale-100 transition active:scale-75">
           <a
-            href={isLive ? "#Projects" : href}
+            href={notLive ? "" : href}
             className={`group mb-2 flex items-end gap-1 rounded-md   p-3 font-medium text-yellow hover:animate-bg hover:underline`}
-            target={isLive ? "_self" : "_blank"}
+            target={notLive ? "_self" : "_blank"}
             rel="noopener noreferrer"
-            onClick={() => {
-              if (isLive) toast.error(isLive, { position: "bottom-center" });
+            onClick={(e) => {
+              if (notLive) {
+                toast.error(notLive, { position: "bottom-center" });
+                return e.preventDefault();
+                // top.location.href = this.href;
+              }
             }}
           >
             <p>Visit</p>

@@ -1,6 +1,5 @@
 import { animate, motion, useMotionValue, Variants } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 import { Card as CardData } from "../../constants/card";
 import { useScrollConstraints } from "../../hooks/useScrollConstrain";
@@ -18,11 +17,21 @@ const childVariants: Variants = {
   },
 };
 
-const Card = ({ id, title, description, img, href, isLiveMsg }: CardData) => {
-  const param = useParams();
-  const isSelected = param.id === id;
-  const navigate = useNavigate();
+interface Props extends CardData {
+  isSelected: boolean;
+  setIsSelected: Dispatch<SetStateAction<string>>;
+}
 
+const Card = ({
+  id,
+  title,
+  description,
+  img,
+  href,
+  isLiveMsg,
+  isSelected,
+  setIsSelected,
+}: Props) => {
   const y = useMotionValue(0);
 
   const zIndex = useMotionValue(isSelected ? 10 : 0);
@@ -32,7 +41,7 @@ const Card = ({ id, title, description, img, href, isLiveMsg }: CardData) => {
   const constraints = useScrollConstraints(cardRef, isSelected);
 
   function checkSwipeToDismiss() {
-    y.get() > dismissDistance && navigate("/");
+    y.get() > dismissDistance && setIsSelected("");
   }
 
   function checkZIndex() {
@@ -62,14 +71,25 @@ const Card = ({ id, title, description, img, href, isLiveMsg }: CardData) => {
           : ""
       }`}
       layout
-      style={{ zIndex }}
+      style={{ zIndex, cursor: isSelected ? "auto" : "pointer" }}
       initial={{
         opacity: 0,
         y: 20,
       }}
       variants={childVariants}
+      onClick={() => !isSelected && setIsSelected(id)}
     >
-      <Overlay isSelected={isSelected} />
+      {/* overlay */}
+      <motion.div
+        initial={false}
+        animate={{ opacity: isSelected ? 1 : 0, transition: { duration: 0.5 } }}
+        transition={{ duration: 0.2 }}
+        style={{ pointerEvents: isSelected ? "auto" : "none" }}
+        className="fixed inset-0 z-10  cursor-pointer bg-black/80"
+        onClick={() => {
+          setIsSelected("");
+        }}
+      />
       <motion.div
         className={`pointer-events-none block h-full w-full ${
           isSelected
@@ -96,28 +116,28 @@ const Card = ({ id, title, description, img, href, isLiveMsg }: CardData) => {
             desc={description}
             isSelected={isSelected}
             href={href}
-            isLive={isLiveMsg}
+            notLive={isLiveMsg}
           />
         </motion.div>
       </motion.div>
-      {!isSelected && (
+      {/* {!isSelected && (
         <Link to={`/project/${id}`} className={"absolute inset-0"} />
-      )}
+      )} */}
       <Title title={title} isSelected={isSelected} />
     </motion.li>
   );
 };
 
-const Overlay = ({ isSelected }: { isSelected: boolean }) => (
-  <motion.div
-    initial={false}
-    animate={{ opacity: isSelected ? 1 : 0, transition: { duration: 0.5 } }}
-    transition={{ duration: 0.2 }}
-    style={{ pointerEvents: isSelected ? "auto" : "none" }}
-    className="fixed inset-0 z-10  bg-black/80"
-  >
-    <Link to="/" className="absolute inset-0" />
-  </motion.div>
-);
+// const Overlay = ({ isSelected }: { isSelected: boolean }) => (
+//   <motion.div
+//     initial={false}
+//     animate={{ opacity: isSelected ? 1 : 0, transition: { duration: 0.5 } }}
+//     transition={{ duration: 0.2 }}
+//     style={{ pointerEvents: isSelected ? "auto" : "none" }}
+//     className="fixed inset-0 z-10  bg-black/80"
+//   >
+//     <Link to="/" className="absolute inset-0" />
+//   </motion.div>
+// );
 
 export default Card;

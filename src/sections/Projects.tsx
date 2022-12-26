@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { RotatingLines } from "react-loader-spinner";
+import { toast } from "react-hot-toast";
 
 import Card from "../components/card/Card";
 import { Card as CardType, cards } from "../constants/card";
@@ -15,6 +16,7 @@ const containerVariants: Variants = {
 
 const Projects = () => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
+  const [isSelected, setIsSelected] = useState("");
 
   useEffect(() => {
     const loadImage = (card: CardType) => {
@@ -29,7 +31,11 @@ const Projects = () => {
 
     Promise.all(cards.map((card) => loadImage(card)))
       .then(() => setImgsLoaded(true))
-      .catch((err) => console.log("Failed to load images", err));
+      .catch((err) => {
+        const msg = "Failed to load images";
+        toast.error(msg);
+        console.log(msg, err);
+      });
   }, []);
 
   return (
@@ -44,7 +50,12 @@ const Projects = () => {
             viewport={{ once: true }}
           >
             {cards.map((card) => (
-              <Card key={card.title} {...card} />
+              <Card
+                key={card.title}
+                {...card}
+                isSelected={isSelected === card.id}
+                setIsSelected={setIsSelected}
+              />
             ))}
             {/* {cards.map((card) => (
               <SingleCard key={card.id} {...card} />
