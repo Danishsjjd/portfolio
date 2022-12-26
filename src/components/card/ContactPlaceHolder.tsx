@@ -17,7 +17,7 @@ export const ContentPlaceholder = ({
 }) => {
   return (
     <motion.div
-      className="w-[90vw] max-w-3xl [padding:_clamp(435px,_80vh+15px,_80vh+35px)_35px_35px_35px]"
+      className="w-[90vw] max-w-3xl [padding:_clamp(435px,_80vh+10px,_80vh+10px)_15px_15px_15px] sm:[padding:_clamp(435px,_80vh+15px,_80vh+35px)_35px_35px_35px]"
       layout
       transition={{ ...(isSelected ? openSpring : closeSpring) }}
     >
