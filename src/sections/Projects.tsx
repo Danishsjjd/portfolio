@@ -1,22 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { RotatingLines } from "react-loader-spinner";
+
 import Card from "../components/card/Card";
 import { Card as CardType, cards } from "../constants/card";
 
 const Projects = () => {
+  const [imgsLoaded, setImgsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImage = (card: CardType) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = card.img;
+        loadImg.onload = () => resolve(card.img);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(cards.map((card) => loadImage(card)))
+      .then(() => setImgsLoaded(true))
+      .catch((err) => console.log("Failed to load images", err));
+  }, []);
+
   return (
     <div className="mx-auto max-w-7xl px-8 pt-44" id="Projects">
       <h3 className="text-left text-3xl font-medium underline">Projects</h3>
-      <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {cards.map((card) => (
-          <Card key={card.title} {...card} />
-        ))}
-      </ul>
-      <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {cards.map((card) => (
-          <SingleCard key={card.id} {...card} />
-        ))}
-      </ul>
+      {imgsLoaded ? (
+        <>
+          <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {cards.map((card) => (
+              <Card key={card.title} {...card} />
+            ))}
+          </ul>
+          <ul className="relative mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {cards.map((card) => (
+              <SingleCard key={card.id} {...card} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <div className="flex items-center justify-center">
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="40"
+            visible={true}
+          />
+        </div>
+      )}
     </div>
   );
 };

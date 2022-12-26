@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { Link } from "react-scroll";
 
 type Props = {
-  children: string;
+  children: ReactNode;
   to: string;
   className?: string;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;

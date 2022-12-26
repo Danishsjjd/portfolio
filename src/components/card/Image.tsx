@@ -8,7 +8,6 @@ interface Props {
 
 export const Image = ({ img, isSelected }: Props) => {
   return (
-    // w-screen
     <motion.div
       className={`pointer-events-none absolute top-0 left-0 overflow-hidden ${
         isSelected ? "h-[80vh] min-h-[400px]" : "h-full object-cover object-top"

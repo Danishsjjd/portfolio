@@ -33,7 +33,10 @@ const Contact = () => {
 
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
         {links.map(({ href, title }) => (
-          <button className="scale-100 transition active:scale-75" key={title}>
+          <button
+            className="group scale-100 transition active:scale-75"
+            key={title}
+          >
             <a
               href={href}
               target={"_blank"}
@@ -41,7 +44,11 @@ const Contact = () => {
               className="flex rounded-md py-3 pr-6 pl-3 text-xl font-medium text-yellow underline hover:animate-bg hover:decoration-wavy"
             >
               <span>{title}</span>
-              <img src={arrow} alt="arrow" />
+              <img
+                src={arrow}
+                alt="arrow"
+                className="transition-all group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
             </a>
           </button>
         ))}
