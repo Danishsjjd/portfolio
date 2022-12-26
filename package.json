@@ -14,7 +14,6 @@
     "@hookform/error-message": "^2.0.1",
     "@popmotion/popcorn": "^0.4.4",
     "@types/lodash.debounce": "^4.0.7",
-    "aos": "^2.3.4",
     "autoprefixer": "^10.4.13",
     "framer-motion": "^8.0.2",
     "lodash.debounce": "^4.0.8",

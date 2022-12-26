@@ -1,4 +1,4 @@
-import { animate, motion, useMotionValue } from "framer-motion";
+import { animate, motion, useMotionValue, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -11,13 +11,20 @@ import { Image } from "./Image";
 import { Title } from "./Title";
 
 const dismissDistance = 30;
+const childVariants: Variants = {
+  whileInView: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
-const Card = ({ id, title, description, img }: CardData) => {
+const Card = ({ id, title, description, img, href, isLiveMsg }: CardData) => {
   const param = useParams();
   const isSelected = param.id === id;
-
   const navigate = useNavigate();
+
   const y = useMotionValue(0);
+
   const zIndex = useMotionValue(isSelected ? 10 : 0);
   const [overflow, setOverflow] = useState(true);
 
@@ -30,7 +37,7 @@ const Card = ({ id, title, description, img }: CardData) => {
 
   function checkZIndex() {
     if (isSelected) {
-      zIndex.set(99999);
+      zIndex.set(99);
       setOverflow(false);
     } else {
       zIndex.set(0);
@@ -38,13 +45,13 @@ const Card = ({ id, title, description, img }: CardData) => {
     }
   }
 
+  const containerRef = useRef(null);
+  useWheelScroll(containerRef, y, constraints, checkSwipeToDismiss, isSelected);
+
   useEffect(() => {
     if (isSelected) checkZIndex();
     else animate(y, 0);
   }, [isSelected]);
-
-  const containerRef = useRef(null);
-  useWheelScroll(containerRef, y, constraints, checkSwipeToDismiss, isSelected);
 
   return (
     <motion.li
@@ -56,6 +63,11 @@ const Card = ({ id, title, description, img }: CardData) => {
       }`}
       layout
       style={{ zIndex }}
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      variants={childVariants}
     >
       <Overlay isSelected={isSelected} />
       <motion.div
@@ -80,7 +92,12 @@ const Card = ({ id, title, description, img }: CardData) => {
           onDragEnd={checkSwipeToDismiss}
         >
           <Image img={img} isSelected={isSelected} />
-          <ContentPlaceholder desc={description} isSelected={isSelected} />
+          <ContentPlaceholder
+            desc={description}
+            isSelected={isSelected}
+            href={href}
+            isLive={isLiveMsg}
+          />
         </motion.div>
       </motion.div>
       {!isSelected && (

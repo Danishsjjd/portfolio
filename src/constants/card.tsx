@@ -54,7 +54,7 @@ export const cards: Card[] = [
     description:
       "This is a full-stack website I create using Reactjs, tailwindcss for the front-end, and for the backend, I use nodejs & expressJs for API, and for the payment method, I use stripe. This website also has an admin dashboard so the admin can add, delete or update products and also admin can remove users and reviews from products. It works on both Android and iOS. You can buy, review or track your product and much more",
     href: "https://house-to-home.herokuapp.com/",
-    isLiveMsg: "This Website is under construction",
+    isLiveMsg: "404 (Not Found)",
     id: "f",
   },
   {
