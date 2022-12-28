@@ -6,6 +6,7 @@ import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Footer from "./layout/Footer";
 import NotFound from "./components/404";
+import { useState } from "react";
 
 function App() {
   return (
@@ -17,13 +18,17 @@ function App() {
 }
 
 const Home = () => {
+  const [isGoingUp, setIsGoingUp] = useState(true);
+
   return (
     <>
-      <Header />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
+      <Header isGoingUp={isGoingUp} setIsGoingUp={setIsGoingUp} />
+      <main>
+        <About />
+        <Projects setIsGoingUp={setIsGoingUp} />
+        <Contact />
+        <Footer />
+      </main>
     </>
   );
 };

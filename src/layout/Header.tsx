@@ -3,7 +3,14 @@ import { Link } from "react-scroll";
 import logo from "../assets/images/logo.svg";
 import Dropdown from "../components/Dropdown";
 import LinkButton from "../components/LinkButton";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const links: string[] = ["About", "Projects"];
 
@@ -18,8 +25,13 @@ const GlowBtn = () => (
   </button>
 );
 
-const Header = () => {
-  const [isGoingUp, setIsGoingUp] = useState(true);
+const Header = ({
+  isGoingUp,
+  setIsGoingUp,
+}: {
+  isGoingUp: boolean;
+  setIsGoingUp: Dispatch<SetStateAction<boolean>>;
+}) => {
   let scroll = useRef(0);
 
   const activeLink = useCallback(() => {

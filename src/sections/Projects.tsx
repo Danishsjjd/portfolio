@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { RotatingLines } from "react-loader-spinner";
 import { toast } from "react-hot-toast";
@@ -14,9 +14,17 @@ const containerVariants: Variants = {
   },
 };
 
-const Projects = () => {
+const Projects = ({
+  setIsGoingUp,
+}: {
+  setIsGoingUp: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
   const [isSelected, setIsSelected] = useState("");
+
+  useEffect(() => {
+    if (isSelected !== "") setIsGoingUp(false);
+  }, [isSelected]);
 
   useEffect(() => {
     const loadImage = (card: CardType) => {
@@ -39,7 +47,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl px-8 pt-44" id="Projects">
+    <section className="mx-auto max-w-7xl px-8 pt-44" id="Projects">
       <h3 className="text-left text-3xl font-medium underline">Projects</h3>
       {imgsLoaded ? (
         <>
@@ -73,7 +81,7 @@ const Projects = () => {
           />
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -26,7 +26,7 @@ const links: Links[] = [
 
 const Contact = () => {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-28 sm:px-8" id="Contact">
+    <section className="mx-auto max-w-3xl px-4 py-28 sm:px-8" id="Contact">
       <h2 className="mb-14 text-center text-3xl font-bold underline">
         Contact
       </h2>
@@ -57,7 +57,7 @@ const Contact = () => {
         Or contact me directly
       </h3>
       <ContactForm />
-    </div>
+    </section>
   );
 };
 
