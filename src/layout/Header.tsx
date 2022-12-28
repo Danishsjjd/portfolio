@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo.png";
 import Dropdown from "../components/Dropdown";
 import LinkButton from "../components/LinkButton";
 import {
@@ -62,7 +62,7 @@ const Header = ({
         <div className="relative top-2 flex w-full items-center  justify-between rounded-3xl bg-black/50 p-4 backdrop-blur-md">
           <div>
             <a href="#">
-              <img src={logo} alt="logo" className="aspect-square w-8" />
+              <img src={logo} alt="logo" className="h-auto w-14" />
             </a>
           </div>
           {/* mobile */}

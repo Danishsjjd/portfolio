@@ -9,7 +9,8 @@ import { ContentPlaceholder } from "./ContactPlaceHolder";
 import { Image } from "./Image";
 import { Title } from "./Title";
 
-const dismissDistance = 30;
+const dismissDistance = 20;
+
 const childVariants: Variants = {
   whileInView: {
     opacity: 1,
