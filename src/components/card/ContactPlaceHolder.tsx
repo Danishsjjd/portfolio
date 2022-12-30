@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { toast } from "react-hot-toast";
+import { motion } from "framer-motion"
+import { toast } from "react-hot-toast"
 
-import arrow from "../../assets/images/arrow.svg";
-import { closeSpring, openSpring } from "./animation";
+import arrow from "../../assets/images/arrow.svg"
+import { closeSpring, openSpring } from "./animation"
 
 export const ContentPlaceholder = ({
   desc,
@@ -10,14 +10,14 @@ export const ContentPlaceholder = ({
   href,
   notLive,
 }: {
-  desc: string;
-  isSelected: boolean;
-  href: string;
-  notLive?: string;
+  desc: string
+  isSelected: boolean
+  href: string
+  notLive?: string
 }) => {
   return (
     <motion.div
-      className="w-[90vw] max-w-3xl [padding:_clamp(435px,_80vh+10px,_80vh+10px)_15px_15px_15px] sm:[padding:_clamp(435px,_80vh+15px,_80vh+35px)_35px_35px_35px]"
+      className="w-[90vw] max-w-3xl [padding:_clamp(435px,_75vh+10px,_75vh+10px)_15px_15px_15px] sm:[padding:_clamp(435px,_75vh+15px,_75vh+35px)_35px_35px_35px]"
       layout
       transition={{ ...(isSelected ? openSpring : closeSpring) }}
     >
@@ -31,8 +31,8 @@ export const ContentPlaceholder = ({
             rel="noopener noreferrer"
             onClick={(e) => {
               if (notLive) {
-                toast.error(notLive, { position: "bottom-center" });
-                return e.preventDefault();
+                toast.error(notLive, { position: "bottom-center" })
+                return e.preventDefault()
                 // top.location.href = this.href;
               }
             }}
@@ -48,5 +48,5 @@ export const ContentPlaceholder = ({
         <p>{desc}</p>
       </div>
     </motion.div>
-  );
-};
+  )
+}

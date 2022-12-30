@@ -1,12 +1,12 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"
 
-import Header from "./layout/Header";
-import Contact from "./sections/Contact";
-import About from "./sections/About";
-import Projects from "./sections/Projects";
-import Footer from "./layout/Footer";
-import NotFound from "./components/404";
-import { useState } from "react";
+import Header from "./layout/Header"
+import Contact from "./sections/Contact"
+import About from "./sections/About"
+import Projects from "./sections/Projects"
+import Footer from "./layout/Footer"
+import NotFound from "./components/404"
+import { useState } from "react"
 
 function App() {
   return (
@@ -14,23 +14,32 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }
 
 const Home = () => {
-  const [isGoingUp, setIsGoingUp] = useState(true);
+  const [isGoingUp, setIsGoingUp] = useState(true)
+  const [isSelected, setIsSelected] = useState("")
 
   return (
     <>
-      <Header isGoingUp={isGoingUp} setIsGoingUp={setIsGoingUp} />
+      <Header
+        isGoingUp={isGoingUp}
+        setIsGoingUp={setIsGoingUp}
+        isCardActive={isSelected !== ""}
+      />
       <main>
         <About />
-        <Projects setIsGoingUp={setIsGoingUp} />
+        <Projects
+          setIsGoingUp={setIsGoingUp}
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
+        />
         <Contact />
         <Footer />
       </main>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

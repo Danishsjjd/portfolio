@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { motion, Variants } from "framer-motion";
-import { RotatingLines } from "react-loader-spinner";
-import { toast } from "react-hot-toast";
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { motion, Variants } from "framer-motion"
+import { RotatingLines } from "react-loader-spinner"
+import { toast } from "react-hot-toast"
 
-import Card from "../components/card/Card";
-import { Card as CardType, cards } from "../constants/card";
+import Card from "../components/card/Card"
+import { Card as CardType, cards } from "../constants/card"
 
 const containerVariants: Variants = {
   whileInView: {
@@ -12,39 +12,42 @@ const containerVariants: Variants = {
       staggerChildren: 0.15,
     },
   },
-};
+}
 
 const Projects = ({
   setIsGoingUp,
+  isSelected,
+  setIsSelected,
 }: {
-  setIsGoingUp: Dispatch<SetStateAction<boolean>>;
+  setIsGoingUp: Dispatch<SetStateAction<boolean>>
+  isSelected: string
+  setIsSelected: Dispatch<SetStateAction<string>>
 }) => {
-  const [imgsLoaded, setImgsLoaded] = useState(false);
-  const [isSelected, setIsSelected] = useState("");
+  const [imgsLoaded, setImgsLoaded] = useState(false)
 
   useEffect(() => {
-    if (isSelected !== "") setIsGoingUp(false);
-  }, [isSelected]);
+    if (isSelected !== "") setIsGoingUp(false)
+  }, [isSelected])
 
   useEffect(() => {
     const loadImage = (card: CardType) => {
       return new Promise((resolve, reject) => {
-        const loadImg = new Image();
-        loadImg.src = card.img;
-        loadImg.onload = () => resolve(card.img);
+        const loadImg = new Image()
+        loadImg.src = card.img
+        loadImg.onload = () => resolve(card.img)
 
-        loadImg.onerror = (err) => reject(err);
-      });
-    };
+        loadImg.onerror = (err) => reject(err)
+      })
+    }
 
     Promise.all(cards.map((card) => loadImage(card)))
       .then(() => setImgsLoaded(true))
       .catch((err) => {
-        const msg = "Failed to load images";
-        toast.error(msg);
-        console.log(msg, err);
-      });
-  }, []);
+        const msg = "Failed to load images"
+        toast.error(msg)
+        console.log(msg, err)
+      })
+  }, [])
 
   return (
     <section className="mx-auto max-w-7xl px-8 pt-44" id="Projects">
@@ -82,8 +85,8 @@ const Projects = ({
         </div>
       )}
     </section>
-  );
-};
+  )
+}
 
 // function SingleCard({ description, img, title, href, isLiveMsg }: CardType) {
 //   const isLive = !isLiveMsg;
@@ -110,4 +113,4 @@ const Projects = ({
 //   );
 // }
 
-export default Projects;
+export default Projects

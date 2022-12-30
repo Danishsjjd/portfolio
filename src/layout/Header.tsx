@@ -1,18 +1,11 @@
-import { Link } from "react-scroll";
+import { Link } from "react-scroll"
 
-import logo from "../assets/images/logo.png";
-import Dropdown from "../components/Dropdown";
-import LinkButton from "../components/LinkButton";
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import logo from "../assets/images/logo.png"
+import Dropdown from "../components/Dropdown"
+import LinkButton from "../components/LinkButton"
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react"
 
-const links: string[] = ["About", "Projects"];
+const links: string[] = ["About", "Projects"]
 
 const GlowBtn = () => (
   <button className="btn-glow !cursor-default px-3 uppercase text-yellow">
@@ -23,34 +16,37 @@ const GlowBtn = () => (
       Contact
     </Link>
   </button>
-);
+)
 
 const Header = ({
   isGoingUp,
   setIsGoingUp,
+  isCardActive,
 }: {
-  isGoingUp: boolean;
-  setIsGoingUp: Dispatch<SetStateAction<boolean>>;
+  isGoingUp: boolean
+  setIsGoingUp: Dispatch<SetStateAction<boolean>>
+
+  isCardActive: boolean
 }) => {
-  let scroll = useRef(0);
+  let scroll = useRef(0)
 
   const activeLink = useCallback(() => {
-    if (window.scrollY > scroll.current) setIsGoingUp(false);
-    else setIsGoingUp(true);
+    if (window.scrollY > scroll.current && !isCardActive) setIsGoingUp(false)
+    else setIsGoingUp(true)
 
-    scroll.current = window.scrollY;
-  }, []);
+    scroll.current = window.scrollY
+  }, [])
 
   useEffect(() => {
     window.scrollTo({
       top: document.getElementById(window.location.hash.slice(1))?.offsetTop,
       behavior: "smooth",
-    });
-    window.addEventListener("scroll", activeLink);
+    })
+    window.addEventListener("scroll", activeLink)
     return () => {
-      window.removeEventListener("scroll", activeLink);
-    };
-  }, [activeLink]);
+      window.removeEventListener("scroll", activeLink)
+    }
+  }, [activeLink])
 
   return (
     <header
@@ -87,7 +83,7 @@ const Header = ({
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

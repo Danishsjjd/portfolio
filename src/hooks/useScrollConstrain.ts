@@ -1,8 +1,8 @@
-import { useState, useEffect, MutableRefObject } from "react";
+import { useState, useEffect, MutableRefObject } from "react"
 
 interface Constraints {
-  top: number;
-  bottom: number;
+  top: number
+  bottom: number
 }
 
 /**
@@ -15,20 +15,25 @@ export function useScrollConstraints(
   const [constraints, setConstraints] = useState<Constraints>({
     top: 0,
     bottom: 0,
-  });
+  })
+
+  function getConstraints() {
+    const element = ref.current
+    const viewportHeight = window.innerHeight
+    const contentTop = element?.offsetTop
+    const contentHeight = element?.offsetHeight
+    const scrollableViewport = viewportHeight - (contentTop || 0) * 2
+    const top = Math.min(scrollableViewport - (contentHeight || 0), 0)
+    setConstraints({ top, bottom: 0 })
+  }
 
   useEffect(() => {
-    if (!measureConstraints) return;
+    if (measureConstraints) {
+      getConstraints()
+      window.addEventListener("resize", getConstraints)
+    }
+    return () => window.removeEventListener("resize", getConstraints)
+  }, [measureConstraints])
 
-    const element = ref.current;
-    const viewportHeight = window.innerHeight;
-    const contentTop = element?.offsetTop;
-    const contentHeight = element?.offsetHeight;
-    const scrollableViewport = viewportHeight - (contentTop || 0) * 2;
-    const top = Math.min(scrollableViewport - (contentHeight || 0), 0);
-
-    setConstraints({ top, bottom: 0 });
-  }, [measureConstraints]);
-
-  return constraints;
+  return constraints
 }
