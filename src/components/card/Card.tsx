@@ -29,7 +29,7 @@ const Card = ({
   description,
   img,
   href,
-  isLiveMsg,
+  ifNotLiveMsg: isLiveMsg,
   isSelected,
   setIsSelected,
 }: Props) => {
