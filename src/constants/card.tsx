@@ -1,19 +1,20 @@
-import besnik from "../assets/images/card-cover/besnik.jpg";
-import expice from "../assets/images/card-cover/expice.jpg";
-import fitClub from "../assets/images/card-cover/fitclub.jpg";
-import gfox from "../assets/images/card-cover/gfox.jpg";
-import hacks from "../assets/images/card-cover/hacks.jpg";
-import houseToHome from "../assets/images/card-cover/house-to-home.jpg";
-import mcafee from "../assets/images/card-cover/mcafee.jpg";
+import besnik from "../assets/images/card-cover/besnik.jpg"
+import expice from "../assets/images/card-cover/expice.jpg"
+import fitClub from "../assets/images/card-cover/fitclub.jpg"
+import gfox from "../assets/images/card-cover/gfox.jpg"
+import hacks from "../assets/images/card-cover/hacks.jpg"
+import houseToHome from "../assets/images/card-cover/house-to-home.jpg"
+import wibeStudio from "../assets/images/card-cover/wibe-studio.png"
+import mcafee from "../assets/images/card-cover/mcafee.jpg"
 
 export type Card = {
-  id: string;
-  img: string;
-  title: string;
-  description: string;
-  href: string;
-  isLiveMsg?: string;
-};
+  id: string
+  img: string
+  title: string
+  description: string
+  href: string
+  isLiveMsg?: string
+}
 
 export const cards: Card[] = [
   // {
@@ -32,6 +33,14 @@ export const cards: Card[] = [
   //   href: "https://hacks-danishsjjd.netlify.app/",
   //   id: "b",
   // },
+  {
+    img: wibeStudio,
+    title: "Wibe Studio",
+    description:
+      "TODO: HAVE TO WRITE IT:- This website is for fitness club. I implement CSS, animations, and slider to make user experience better so user spend there most of time. It works on both Android and iOS",
+    href: "https://wibe-studio-danishsjjd.netlify.app/",
+    id: "i",
+  },
   {
     img: fitClub,
     title: "Fit Club",
@@ -73,4 +82,5 @@ export const cards: Card[] = [
   //   href: "https://mcafee-danishsjjd.netlify.app/",
   //   id: "h",
   // },
-];
+]
+// latestId: i
