@@ -1,12 +1,12 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
-import { Link } from "react-scroll";
+import { Dispatch, ReactNode, SetStateAction } from "react"
+import { Link } from "react-scroll"
 
 type Props = {
-  children: ReactNode;
-  to: string;
-  className?: string;
-  setIsOpen?: Dispatch<SetStateAction<boolean>>;
-};
+  children: ReactNode
+  to: string
+  className?: string
+  setIsOpen?: Dispatch<SetStateAction<boolean>>
+}
 
 const LinkButton = ({ children, to, className, setIsOpen }: Props) => {
   return (
@@ -20,14 +20,14 @@ const LinkButton = ({ children, to, className, setIsOpen }: Props) => {
           className ? className : ""
         }`}
         onClick={() => {
-          window.history.pushState(null, "", `#${to}`);
-          if (setIsOpen) setIsOpen(false);
+          window.history.pushState(null, "", `#${to}`)
+          if (setIsOpen) setIsOpen(false)
         }}
       >
         {children}
       </Link>
     </button>
-  );
-};
+  )
+}
 
-export default LinkButton;
+export default LinkButton

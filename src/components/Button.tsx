@@ -1,8 +1,8 @@
 type Props = {
-  children: React.ReactNode;
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
+  children: React.ReactNode
+  className?: string
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+}
 const Button = ({ children, className, onClick }: Props) => {
   return (
     <button
@@ -13,7 +13,7 @@ const Button = ({ children, className, onClick }: Props) => {
     >
       {children}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

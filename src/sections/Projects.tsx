@@ -1,8 +1,7 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { motion, Variants } from "framer-motion"
-import { RotatingLines } from "react-loader-spinner"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
-
+import { RotatingLines } from "react-loader-spinner"
 import Card from "../components/card/Card"
 import { Card as CardType, cards } from "../constants/card"
 

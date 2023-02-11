@@ -1,14 +1,14 @@
-import { Menu } from "@headlessui/react";
-import { ReactNode } from "react";
+import { Menu } from "@headlessui/react"
+import { ReactNode } from "react"
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 
 type Props = {
-  href: string;
-  children: ReactNode;
-};
+  href: string
+  children: ReactNode
+}
 
 export default function DropdownMenuItem({ href, children }: Props) {
   return (
@@ -21,9 +21,9 @@ export default function DropdownMenuItem({ href, children }: Props) {
             "block px-4 py-2 text-sm"
           )}
           onClick={() => {
-            const ref = document.getElementById(href);
+            const ref = document.getElementById(href)
             if (ref) {
-              window.scrollTo({ behavior: "smooth", top: ref.offsetTop });
+              window.scrollTo({ behavior: "smooth", top: ref.offsetTop })
             }
           }}
         >
@@ -31,5 +31,5 @@ export default function DropdownMenuItem({ href, children }: Props) {
         </a>
       )}
     </Menu.Item>
-  );
+  )
 }

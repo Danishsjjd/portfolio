@@ -1,9 +1,8 @@
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react"
 import { Link } from "react-scroll"
-
 import logo from "../assets/images/logo.png"
 import Dropdown from "../components/Dropdown"
 import LinkButton from "../components/LinkButton"
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react"
 
 const links: string[] = ["About", "Projects"]
 

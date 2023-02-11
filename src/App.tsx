@@ -1,12 +1,11 @@
-import { Routes, Route } from "react-router-dom"
-
-import Header from "./layout/Header"
-import Contact from "./sections/Contact"
-import About from "./sections/About"
-import Projects from "./sections/Projects"
-import Footer from "./layout/Footer"
-import NotFound from "./components/404"
 import { useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import NotFound from "./components/404"
+import Footer from "./layout/Footer"
+import Header from "./layout/Header"
+import About from "./sections/About"
+import Contact from "./sections/Contact"
+import Projects from "./sections/Projects"
 
 function App() {
   return (

@@ -5,24 +5,24 @@ import {
   Path,
   DeepMap,
   FieldError,
-} from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
-import emailjs from "@emailjs/browser";
-import { DetailedHTMLProps, InputHTMLAttributes, useRef } from "react";
-import { toast } from "react-hot-toast";
+} from "react-hook-form"
+import { ErrorMessage } from "@hookform/error-message"
+import emailjs from "@emailjs/browser"
+import { DetailedHTMLProps, InputHTMLAttributes, useRef } from "react"
+import { toast } from "react-hot-toast"
 
-import arrow from "../assets/images/arrow.svg";
+import arrow from "../assets/images/arrow.svg"
 type Links = {
-  title: string;
-  href: string;
-};
+  title: string
+  href: string
+}
 
 const links: Links[] = [
   { title: "Email", href: "mailto:danishsjjad@gmail.com" },
   { title: "WhatsApp", href: "https://wa.me/923011800058" },
   { title: "Twitter", href: "https://twitter.com/Danishsjjd" },
   { title: "GitHub", href: "https://github.com/danishsjjd/" },
-];
+]
 
 const Contact = () => {
   return (
@@ -58,14 +58,14 @@ const Contact = () => {
       </h3>
       <ContactForm />
     </section>
-  );
-};
+  )
+}
 
 type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
+  name: string
+  email: string
+  message: string
+}
 
 function ContactForm() {
   const {
@@ -73,16 +73,16 @@ function ContactForm() {
     register,
     handleSubmit,
     reset,
-  } = useForm<FormData>({});
+  } = useForm<FormData>({})
 
   const onSubmit = (data: FormData) => {
     toast
       .promise(
         emailjs.send(
-          "service_g3a0u92",
-          "template_r92f03v",
+          import.meta.env.VITE_EMAIL_SERVICE_ID,
+          import.meta.env.VITE_EMAIL_TEMPLATE,
           data,
-          "5p66bB_WiHK1mjJkZ"
+          import.meta.env.VITE_EMAIL_PUBLIC_KEY
         ),
         {
           loading: "Sending...",
@@ -91,9 +91,9 @@ function ContactForm() {
         }
       )
       .then(() => {
-        reset();
-      });
-  };
+        reset()
+      })
+  }
 
   return (
     <form
@@ -143,21 +143,21 @@ function ContactForm() {
         Submit
       </button>
     </form>
-  );
+  )
 }
 
 type InputProps<T extends {}> = {
-  title: string;
-  type: React.HTMLInputTypeAttribute;
-  errors: Partial<DeepMap<T, FieldError>>;
-  name: Path<T>;
-  register: UseFormRegister<T>;
-  className?: string;
-  validations?: RegisterOptions;
+  title: string
+  type: React.HTMLInputTypeAttribute
+  errors: Partial<DeepMap<T, FieldError>>
+  name: Path<T>
+  register: UseFormRegister<T>
+  className?: string
+  validations?: RegisterOptions
 } & Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "name"
->;
+>
 
 const Input = <T extends {}>({
   title,
@@ -184,11 +184,11 @@ const Input = <T extends {}>({
         errors={errors}
         name={name as any}
         render={({ message }) => {
-          return <p className="mt-1 text-red-300">{message}</p>;
+          return <p className="mt-1 text-red-300">{message}</p>
         }}
       />
     </label>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

@@ -1,5 +1,5 @@
-import logo from "../assets/images/logo.png";
-import Button from "../components/Button";
+import logo from "../assets/images/logo.png"
+import Button from "../components/Button"
 
 const Footer = () => {
   return (
@@ -15,7 +15,7 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

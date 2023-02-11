@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { toast } from "react-hot-toast"
-
 import arrow from "../../assets/images/arrow.svg"
 import { closeSpring, openSpring } from "./animation"
 

@@ -1,11 +1,10 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-
-import IoMenu from "../assets/images/bars-solid.svg";
-import DropdownMenuItem from "./DropdownMenuItem";
+import { Menu, Transition } from "@headlessui/react"
+import { Fragment } from "react"
+import IoMenu from "../assets/images/bars-solid.svg"
+import DropdownMenuItem from "./DropdownMenuItem"
 
 interface Props {
-  tags: string[];
+  tags: string[]
 }
 
 export default function DropdownMenu({ tags }: Props) {
@@ -39,11 +38,11 @@ export default function DropdownMenu({ tags }: Props) {
                 <DropdownMenuItem key={tag} href={`${tag}`}>
                   {tag}
                 </DropdownMenuItem>
-              );
+              )
             })}
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  );
+  )
 }

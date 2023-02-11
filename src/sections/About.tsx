@@ -1,4 +1,4 @@
-import downArrow from "../assets/images/down-arrow.svg";
+import downArrow from "../assets/images/down-arrow.svg"
 
 const About = () => {
   return (
@@ -16,7 +16,7 @@ const About = () => {
               window.scrollTo({
                 top: document.getElementById("Projects")?.offsetTop,
                 behavior: "smooth",
-              });
+              })
             }}
           >
             <img
@@ -43,7 +43,7 @@ const About = () => {
       {/* img div */}
       <div className="about-img aspect-square w-full overflow-hidden rounded-2xl sm:h-[100vh] md:min-w-[700px] " />
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About

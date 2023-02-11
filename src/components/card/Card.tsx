@@ -1,6 +1,5 @@
 import { animate, motion, useMotionValue, Variants } from "framer-motion"
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
-
 import { Card as CardData } from "../../constants/card"
 import { useScrollConstraints } from "../../hooks/useScrollConstrain"
 import { useWheelScroll } from "../../hooks/useWheelScroll"

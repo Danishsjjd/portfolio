@@ -1,7 +1,7 @@
 type Props = {
-  title: string;
-  isSelected: boolean;
-};
+  title: string
+  isSelected: boolean
+}
 
 export const Title = ({ title, isSelected }: Props) => {
   // title
@@ -16,5 +16,5 @@ export const Title = ({ title, isSelected }: Props) => {
     >
       {title}
     </div>
-  );
-};
+  )
+}

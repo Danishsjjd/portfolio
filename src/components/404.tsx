@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const NotFound = () => {
-  const navigate = useNavigate();
-  const [navigateTime, setNavigateTime] = useState(4);
+  const navigate = useNavigate()
+  const [navigateTime, setNavigateTime] = useState(4)
 
   useEffect(() => {
-    let time: number | null;
+    let time: number | null
     if (navigateTime >= 1) {
       time = setTimeout(() => {
-        setNavigateTime((pre) => pre - 1);
-      }, 1000);
+        setNavigateTime((pre) => pre - 1)
+      }, 1000)
     } else {
-      navigate("/");
+      navigate("/")
     }
 
     return () => {
-      time && clearTimeout(time);
-    };
-  }, [navigateTime]);
+      time && clearTimeout(time)
+    }
+  }, [navigateTime])
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3 text-2xl font-medium text-zinc-300">
@@ -28,7 +28,7 @@ const NotFound = () => {
         <span className="font-bold">{navigateTime}</span>
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound
