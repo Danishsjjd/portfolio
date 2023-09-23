@@ -3,7 +3,7 @@ import downArrow from "../assets/images/down-arrow.svg"
 const About = () => {
   return (
     <section
-      className="relative mx-auto flex min-h-[calc(100vh-88px)] max-w-7xl flex-col items-center justify-between gap-10 px-6 sm:px-14 lg:flex-row lg:gap-28"
+      className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-10 px-6 sm:px-14 lg:flex-row lg:gap-28"
       id="About"
     >
       <div className="blur-bg -left-60 -top-32 aspect-square w-[500px] bg-yellow/30" />
@@ -41,7 +41,7 @@ const About = () => {
         </p>
       </div>
       {/* img div */}
-      <div className="about-img aspect-square w-full overflow-hidden rounded-2xl sm:h-[100vh] md:min-w-[700px] " />
+      <div className="about-img aspect-square max-h-[800px] w-full overflow-hidden rounded-2xl sm:h-[100vh] md:min-w-[700px] " />
     </section>
   )
 }

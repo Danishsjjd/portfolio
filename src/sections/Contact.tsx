@@ -20,7 +20,6 @@ type Links = {
 const links: Links[] = [
   { title: "Email", href: "mailto:danishsjjad@gmail.com" },
   { title: "WhatsApp", href: "https://wa.me/923011800058" },
-  { title: "Twitter", href: "https://twitter.com/Danishsjjd" },
   { title: "GitHub", href: "https://github.com/danishsjjd/" },
 ]
 
