@@ -8,7 +8,7 @@ import {
 } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 import emailjs from "@emailjs/browser"
-import { DetailedHTMLProps, InputHTMLAttributes, useRef } from "react"
+import { DetailedHTMLProps, InputHTMLAttributes, useRef, useState } from "react"
 import { toast } from "react-hot-toast"
 
 import arrow from "../assets/images/arrow.svg"
@@ -67,6 +67,7 @@ type FormData = {
 }
 
 function ContactForm() {
+  const [isLoading, setIsLoading] = useState(false)
   const {
     formState: { errors },
     register,
@@ -75,6 +76,9 @@ function ContactForm() {
   } = useForm<FormData>({})
 
   const onSubmit = (data: FormData) => {
+    if (isLoading) return
+
+    setIsLoading(true)
     toast
       .promise(
         emailjs.send(
@@ -91,6 +95,9 @@ function ContactForm() {
       )
       .then(() => {
         reset()
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -138,6 +145,7 @@ function ContactForm() {
       <button
         type="submit"
         className="rounded-full !bg-yellow px-4  py-3 text-black underline hover:decoration-wavy"
+        disabled={isLoading}
       >
         Submit
       </button>
