@@ -1,15 +1,15 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
+import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from "react"
 
 import { useScrollConstraints } from "../../../hooks/useScrollConstrain"
 import { useWheelScroll } from "../../../hooks/useWheelScroll"
 
-import { Card as CardData } from "../../../constants/card"
+import { type Card as CardData } from "../../../constants/card"
 import { ContentPlaceholder } from "./ContactPlaceHolder"
 import { Image } from "./Image"
 import { Title } from "./Title"
 import { closeSpring, openSpring } from "./animation"
 
-import { Variants, animate, motion, useMotionValue } from "framer-motion"
+import { type Variants, animate, motion, useMotionValue } from "framer-motion"
 
 const dismissDistance = 20
 
@@ -54,12 +54,13 @@ const Card = ({ id, title, description, img, href, ifNotLiveMsg: isLiveMsg, isSe
   useEffect(() => {
     if (isSelected) checkZIndex()
     else animate(y, 0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSelected])
 
   return (
     <motion.li
       ref={containerRef}
-      className={`relative h-60 w-full rounded-2xl  lg:h-[340px] ${
+      className={`lg:h-[340px] relative h-60 w-full  rounded-2xl ${
         overflow
           ? "cu-li overflow-hidden outline outline-2 outline-white/0 transition-all duration-300 hover:outline-offset-2 hover:outline-gray-300"
           : ""
@@ -86,7 +87,7 @@ const Card = ({ id, title, description, img, href, ifNotLiveMsg: isLiveMsg, isSe
       />
       <motion.div
         className={`pointer-events-none block h-full w-full ${
-          isSelected ? "open fixed top-0 left-0 right-0 z-10 overflow-hidden py-10 px-4" : "relative"
+          isSelected ? "open fixed left-0 right-0 top-0 z-10 overflow-hidden px-4 py-10" : "relative"
         }`}
         style={{ zIndex }}
       >
@@ -103,7 +104,7 @@ const Card = ({ id, title, description, img, href, ifNotLiveMsg: isLiveMsg, isSe
           dragConstraints={constraints}
           onDragEnd={checkSwipeToDismiss}
         >
-          <Image img={img} isSelected={isSelected} />
+          <Image alt="Preview image" img={img} isSelected={isSelected} />
           <ContentPlaceholder desc={description} isSelected={isSelected} href={href} notLive={isLiveMsg} />
         </motion.div>
       </motion.div>

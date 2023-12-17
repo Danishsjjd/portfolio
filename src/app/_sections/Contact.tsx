@@ -1,11 +1,19 @@
-import { DetailedHTMLProps, InputHTMLAttributes, useRef, useState } from "react"
-import { DeepMap, FieldError, Path, RegisterOptions, UseFormRegister, useForm } from "react-hook-form"
-import { toast } from "react-hot-toast"
+import { type DetailedHTMLProps, type InputHTMLAttributes, useState } from "react"
+import {
+  type DeepMap,
+  type FieldError,
+  type Path,
+  type RegisterOptions,
+  type UseFormRegister,
+  useForm,
+} from "react-hook-form"
 
-import arrow from "../assets/images/arrow.svg"
+import Image from "next/image"
 
+import arrow from "@/assets/images/arrow.svg"
 import emailjs from "@emailjs/browser"
 import { ErrorMessage } from "@hookform/error-message"
+import { toast } from "sonner"
 
 type Links = {
   title: string
@@ -30,11 +38,11 @@ const Contact = () => {
               href={href}
               target={"_blank"}
               rel="noopener noreferrer"
-              className="flex rounded-md py-3 pr-6 pl-3 text-xl font-medium text-yellow underline hover:animate-bg hover:decoration-wavy"
+              className="flex rounded-md py-3 pl-3 pr-6 text-xl font-medium text-yellow underline hover:animate-bg hover:decoration-wavy"
             >
               <span>{title}</span>
-              <img
-                src={arrow}
+              <Image
+                src={arrow as string}
                 alt="arrow"
                 className="transition-all group-hover:-translate-y-1 group-hover:translate-x-1"
               />
@@ -67,30 +75,29 @@ function ContactForm() {
     if (isLoading) return
 
     setIsLoading(true)
-    toast
-      .promise(
-        emailjs.send(
-          import.meta.env.VITE_EMAIL_SERVICE_ID,
-          import.meta.env.VITE_EMAIL_TEMPLATE,
-          data,
-          import.meta.env.VITE_EMAIL_PUBLIC_KEY
-        ),
-        {
-          loading: "Sending...",
-          success: <b>Email Sent. Thanks!</b>,
-          error: <b>problem while sending an email</b>,
-        }
-      )
-      .then(() => {
-        reset()
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
+    toast.promise(
+      emailjs.send(
+        process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE!,
+        data,
+        process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
+      ),
+      {
+        loading: "Sending...",
+        error: <b>problem while sending an email</b>,
+        success() {
+          reset()
+          return <b>Email Sent. Thanks!</b>
+        },
+        finally() {
+          setIsLoading(false)
+        },
+      }
+    )
   }
 
   return (
-    <form className="my-8 space-y-1 sm:space-y-3" onSubmit={handleSubmit(onSubmit)}>
+    <form className="my-8 space-y-1 sm:space-y-3" onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
       <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 ">
         <Input<FormData>
           name="name"
@@ -115,7 +122,7 @@ function ContactForm() {
           errors={errors}
         />
       </div>
-      <label className="block rounded-lg px-4 pt-2 pb-4 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
+      <label className="block rounded-lg px-4 pb-4 pt-2 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
         <h3 className="pb-2 font-Lexend">Enter Message</h3>
         <textarea
           className={`w-full rounded-md bg-yellow/20 p-4 outline-none `}
@@ -138,7 +145,7 @@ function ContactForm() {
   )
 }
 
-type InputProps<T extends {}> = {
+type InputProps<T extends object> = {
   title: string
   type: React.HTMLInputTypeAttribute
   errors: Partial<DeepMap<T, FieldError>>
@@ -148,7 +155,7 @@ type InputProps<T extends {}> = {
   validations?: RegisterOptions
 } & Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "name">
 
-const Input = <T extends {}>({
+const Input = <T extends object>({
   title,
   type,
   className,
@@ -159,7 +166,7 @@ const Input = <T extends {}>({
   ...props
 }: InputProps<T>) => {
   return (
-    <label className="rounded-lg px-4 pt-2 pb-4 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
+    <label className="rounded-lg px-4 pb-4 pt-2 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
       <h3 className="pb-2 font-Lexend">{title}</h3>
       <input
         type={type}
@@ -169,7 +176,7 @@ const Input = <T extends {}>({
       />
       <ErrorMessage
         errors={errors}
-        name={name as any}
+        name={name as never}
         render={({ message }) => {
           return <p className="mt-1 text-red-300">{message}</p>
         }}

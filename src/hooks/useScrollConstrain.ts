@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from "react"
+import { type MutableRefObject, useEffect, useState } from "react"
 
 interface Constraints {
   top: number
@@ -30,6 +30,7 @@ export function useScrollConstraints(ref: MutableRefObject<HTMLDivElement | null
       window.addEventListener("resize", getConstraints)
     }
     return () => window.removeEventListener("resize", getConstraints)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [measureConstraints])
 
   return constraints

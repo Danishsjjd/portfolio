@@ -1,9 +1,10 @@
-import { toast } from "react-hot-toast"
+import Image from "next/image"
 
-import arrow from "../../assets/images/arrow.svg"
 import { closeSpring, openSpring } from "./animation"
 
+import arrow from "@/assets/images/arrow.svg"
 import { motion } from "framer-motion"
+import { toast } from "sonner"
 
 export const ContentPlaceholder = ({
   desc,
@@ -39,8 +40,8 @@ export const ContentPlaceholder = ({
             }}
           >
             <p>Visit</p>
-            <img
-              src={arrow}
+            <Image
+              src={arrow as string}
               alt="arrow"
               className="transition-all group-hover:-translate-y-1 group-hover:translate-x-1"
             />

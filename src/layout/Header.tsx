@@ -1,9 +1,11 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react"
+import {type  Dispatch, type SetStateAction, useCallback, useEffect, useRef } from "react"
 import { Link } from "react-scroll"
 
 import Dropdown from "../app/_components/Dropdown"
 import LinkButton from "../app/_components/LinkButton"
-import logo from "../assets/images/logo.png"
+
+import logo from "@/assets/images/logo.png"
+import Image from "next/image"
 
 const links: string[] = ["About", "Projects"]
 
@@ -25,14 +27,15 @@ const Header = ({
 
   isCardActive: boolean
 }) => {
-  let scroll = useRef(0)
+  const scroll = useRef(0)
 
   const activeLink = useCallback(() => {
     if (window.scrollY > scroll.current && !isCardActive) setIsGoingUp(false)
     else setIsGoingUp(true)
 
     scroll.current = window.scrollY
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCardActive])
 
   useEffect(() => {
     window.scrollTo({
@@ -53,7 +56,7 @@ const Header = ({
         <div className="relative top-2 flex w-full items-center  justify-between rounded-3xl bg-black/50 p-4 backdrop-blur-md">
           <div>
             <a href="#">
-              <img src={logo} alt="logo" className="h-auto w-14" />
+              <Image src={logo} alt="logo" className="h-auto w-14" />
             </a>
           </div>
           {/* mobile */}

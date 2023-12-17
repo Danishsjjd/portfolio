@@ -1,8 +1,11 @@
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 
-import IoMenu from "../assets/images/bars-solid.svg"
+import Image from "next/image"
+
 import DropdownMenuItem from "./DropdownMenuItem"
+
+import IoMenu from "@/assets/images/bars-solid.svg"
 
 interface Props {
   tags: string[]
@@ -16,7 +19,7 @@ export default function DropdownMenu({ tags }: Props) {
           className="inline-flex justify-center rounded-md border border-zinc-700 px-2 py-2 text-sm font-medium shadow-sm  transition-all hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-gray-100"
           aria-label="menu"
         >
-          <img src={IoMenu} alt="" className="h-5 w-5" />
+          <Image src={IoMenu as string} alt="" className="h-5 w-5" />
         </Menu.Button>
       </div>
 

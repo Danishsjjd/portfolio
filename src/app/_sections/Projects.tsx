@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { toast } from "react-hot-toast"
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react"
 import { RotatingLines } from "react-loader-spinner"
 
-import { Card as CardType, cards } from "../../constants/card"
+import { type Card as CardType, cards } from "../../constants/card"
 import Card from "../_components/card/Card"
 
-import { Variants, motion } from "framer-motion"
+import { type Variants, motion } from "framer-motion"
+import { toast } from "sonner"
 
 const containerVariants: Variants = {
   whileInView: {
@@ -28,13 +28,14 @@ const Projects = ({
 
   useEffect(() => {
     if (isSelected !== "") setIsGoingUp(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSelected])
 
   useEffect(() => {
     const loadImage = (card: CardType) => {
       return new Promise((resolve, reject) => {
         const loadImg = new Image()
-        loadImg.src = card.img
+        loadImg.src = card.img.src
         loadImg.onload = () => resolve(card.img)
 
         loadImg.onerror = (err) => reject(err)
@@ -46,7 +47,7 @@ const Projects = ({
       .catch((err) => {
         const msg = "Failed to load images"
         toast.error(msg)
-        console.log(msg, err)
+        console.error(msg, err)
       })
   }, [])
 

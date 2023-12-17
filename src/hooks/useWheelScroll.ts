@@ -1,7 +1,7 @@
-import { RefObject } from "react"
+import { type RefObject } from "react"
 
 import { mix } from "@popmotion/popcorn"
-import { MotionValue, animate, useDomEvent } from "framer-motion"
+import { type MotionValue, animate, useDomEvent } from "framer-motion"
 import debounce from "lodash.debounce"
 
 interface Constraints {
@@ -78,7 +78,8 @@ export function useWheelScroll(
     ref,
     "wheel",
     (e) => {
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       isActive && onWheel(e)
     },
     { passive: false }

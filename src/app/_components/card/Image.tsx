@@ -1,22 +1,32 @@
+import { default as NextImage, type StaticImageData } from "next/image"
+
 import { closeSpring, openSpring } from "./animation"
 
 import { motion } from "framer-motion"
 
 interface Props {
   isSelected: boolean
-  img: string
+  img: StaticImageData
+  alt: string
 }
 
-export const Image = ({ img, isSelected }: Props) => {
+const MotionNextImage = motion(NextImage)
+export const Image = ({ img, isSelected, alt }: Props) => {
   return (
     <motion.div
-      className={`pointer-events-none absolute top-0 left-0 overflow-hidden ${
+      className={`pointer-events-none absolute left-0 top-0 overflow-hidden ${
         isSelected ? "h-[75vh] min-h-[400px]" : "h-full object-cover object-top"
       }`}
       layout
       transition={isSelected ? openSpring : closeSpring}
     >
-      <motion.img src={img} alt="" initial={false} transition={isSelected ? openSpring : closeSpring} layout />
+      <MotionNextImage
+        src={img}
+        alt={alt}
+        initial={false}
+        transition={isSelected ? openSpring : closeSpring}
+        layout={undefined}
+      />
     </motion.div>
   )
 }

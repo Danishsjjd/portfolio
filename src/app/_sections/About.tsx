@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import downArrow from "../assets/images/down-arrow.svg"
+import downArrow from "@/assets/images/down-arrow.svg"
 
 const About = () => {
   return (
