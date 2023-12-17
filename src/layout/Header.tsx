@@ -1,17 +1,15 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react"
 import { Link } from "react-scroll"
+
+import Dropdown from "../app/_components/Dropdown"
+import LinkButton from "../app/_components/LinkButton"
 import logo from "../assets/images/logo.png"
-import Dropdown from "../components/Dropdown"
-import LinkButton from "../components/LinkButton"
 
 const links: string[] = ["About", "Projects"]
 
 const GlowBtn = () => (
   <button className="btn-glow !cursor-default px-3 uppercase text-yellow">
-    <Link
-      to="Contact"
-      className="grid h-full w-full cursor-pointer place-items-center"
-    >
+    <Link to="Contact" className="grid h-full w-full cursor-pointer place-items-center">
       Contact
     </Link>
   </button>
@@ -49,9 +47,7 @@ const Header = ({
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isGoingUp ? "translate-y-0" : "-translate-y-[110%]"
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${isGoingUp ? "translate-y-0" : "-translate-y-[110%]"}`}
     >
       <div className="mx-auto max-w-6xl px-12">
         <div className="relative top-2 flex w-full items-center  justify-between rounded-3xl bg-black/50 p-4 backdrop-blur-md">

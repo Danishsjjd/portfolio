@@ -1,5 +1,6 @@
-import { motion } from "framer-motion"
 import { closeSpring, openSpring } from "./animation"
+
+import { motion } from "framer-motion"
 
 interface Props {
   isSelected: boolean
@@ -15,13 +16,7 @@ export const Image = ({ img, isSelected }: Props) => {
       layout
       transition={isSelected ? openSpring : closeSpring}
     >
-      <motion.img
-        src={img}
-        alt=""
-        initial={false}
-        transition={isSelected ? openSpring : closeSpring}
-        layout
-      />
+      <motion.img src={img} alt="" initial={false} transition={isSelected ? openSpring : closeSpring} layout />
     </motion.div>
   )
 }

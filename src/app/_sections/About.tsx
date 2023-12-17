@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import downArrow from "../assets/images/down-arrow.svg"
 
 const About = () => {
@@ -19,11 +21,7 @@ const About = () => {
               })
             }}
           >
-            <img
-              src={downArrow}
-              alt="goto next section"
-              className="relative isolate z-10"
-            />
+            <Image src={downArrow as string} alt="goto next section" className="relative isolate z-10" />
             <div className="absolute inset-0 animate-ping rounded-full bg-yellow" />
           </div>
         </div>
@@ -34,10 +32,9 @@ const About = () => {
           Hello, I am <span className="text-yellow">Danish.</span>
         </h1>
         <p className="sm:text-lg">
-          Danish is a freelance and a full-stack developer based in Pakistan. He
-          has a knack for all things launching products, from planning and
-          designing all the way to solving real-life problems with code. When
-          not online, he loves to design some graphic and do motion graphic.
+          Danish is a freelance and a full-stack developer based in Pakistan. He has a knack for all things launching
+          products, from planning and designing all the way to solving real-life problems with code. When not online, he
+          loves to design some graphic and do motion graphic.
         </p>
       </div>
       {/* img div */}

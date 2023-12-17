@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment } from "react"
+
 import IoMenu from "../assets/images/bars-solid.svg"
 import DropdownMenuItem from "./DropdownMenuItem"
 
@@ -30,9 +31,7 @@ export default function DropdownMenu({ tags }: Props) {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right  divide-zinc-700 rounded-md  border border-zinc-700 bg-zinc-800 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <div className="px-3 py-2 text-xs font-bold uppercase">
-              Navigation
-            </div>
+            <div className="px-3 py-2 text-xs font-bold uppercase">Navigation</div>
             {tags.map((tag) => {
               return (
                 <DropdownMenuItem key={tag} href={`${tag}`}>

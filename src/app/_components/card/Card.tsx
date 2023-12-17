@@ -1,12 +1,15 @@
-import { animate, motion, useMotionValue, Variants } from "framer-motion"
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
-import { Card as CardData } from "../../constants/card"
-import { useScrollConstraints } from "../../hooks/useScrollConstrain"
-import { useWheelScroll } from "../../hooks/useWheelScroll"
-import { closeSpring, openSpring } from "./animation"
+
+import { useScrollConstraints } from "../../../hooks/useScrollConstrain"
+import { useWheelScroll } from "../../../hooks/useWheelScroll"
+
+import { Card as CardData } from "../../../constants/card"
 import { ContentPlaceholder } from "./ContactPlaceHolder"
 import { Image } from "./Image"
 import { Title } from "./Title"
+import { closeSpring, openSpring } from "./animation"
+
+import { Variants, animate, motion, useMotionValue } from "framer-motion"
 
 const dismissDistance = 20
 
@@ -22,16 +25,7 @@ interface Props extends CardData {
   setIsSelected: Dispatch<SetStateAction<string>>
 }
 
-const Card = ({
-  id,
-  title,
-  description,
-  img,
-  href,
-  ifNotLiveMsg: isLiveMsg,
-  isSelected,
-  setIsSelected,
-}: Props) => {
+const Card = ({ id, title, description, img, href, ifNotLiveMsg: isLiveMsg, isSelected, setIsSelected }: Props) => {
   const y = useMotionValue(0)
 
   const zIndex = useMotionValue(isSelected ? 10 : 0)
@@ -92,9 +86,7 @@ const Card = ({
       />
       <motion.div
         className={`pointer-events-none block h-full w-full ${
-          isSelected
-            ? "open fixed top-0 left-0 right-0 z-10 overflow-hidden py-10 px-4"
-            : "relative"
+          isSelected ? "open fixed top-0 left-0 right-0 z-10 overflow-hidden py-10 px-4" : "relative"
         }`}
         style={{ zIndex }}
       >
@@ -112,12 +104,7 @@ const Card = ({
           onDragEnd={checkSwipeToDismiss}
         >
           <Image img={img} isSelected={isSelected} />
-          <ContentPlaceholder
-            desc={description}
-            isSelected={isSelected}
-            href={href}
-            notLive={isLiveMsg}
-          />
+          <ContentPlaceholder desc={description} isSelected={isSelected} href={href} notLive={isLiveMsg} />
         </motion.div>
       </motion.div>
       {/* {!isSelected && (

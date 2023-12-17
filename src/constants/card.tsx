@@ -1,11 +1,11 @@
 import besnik from "../assets/images/card-cover/besnik.jpg"
+import blockmuncher from "../assets/images/card-cover/blockmuncher.jpg"
 import expice from "../assets/images/card-cover/expice.jpg"
 import fitClub from "../assets/images/card-cover/fitclub.jpg"
+import food from "../assets/images/card-cover/food.jpg"
+import hokoha from "../assets/images/card-cover/hokoha.jpg"
 import houseToHome from "../assets/images/card-cover/house-to-home.jpg"
 import wibeStudio from "../assets/images/card-cover/wibe-studio.jpg"
-import hokoha from "../assets/images/card-cover/hokoha.jpg"
-import blockmuncher from "../assets/images/card-cover/blockmuncher.jpg"
-import food from "../assets/images/card-cover/food.jpg"
 
 export type Card = {
   id: string

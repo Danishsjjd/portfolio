@@ -1,31 +1,33 @@
+"use client"
+
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+
+import { useRouter } from "next/navigation"
 
 const NotFound = () => {
-  const navigate = useNavigate()
   const [navigateTime, setNavigateTime] = useState(4)
+  const router = useRouter()
 
   useEffect(() => {
-    let time: number | null
+    let time: ReturnType<typeof setTimeout>
     if (navigateTime >= 1) {
       time = setTimeout(() => {
         setNavigateTime((pre) => pre - 1)
       }, 1000)
     } else {
-      navigate("/")
+      router.replace("/")
     }
 
     return () => {
       time && clearTimeout(time)
     }
-  }, [navigateTime])
+  }, [navigateTime, router])
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3 text-2xl font-medium text-zinc-300">
       <span>404 (Not Found)</span>
       <span>
-        You'll be redirected in:{" "}
-        <span className="font-bold">{navigateTime}</span>
+        You&apos;ll be redirected in: <span className="font-bold">{navigateTime}</span>
       </span>
     </div>
   )

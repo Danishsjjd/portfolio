@@ -1,7 +1,8 @@
-import { mix } from "@popmotion/popcorn"
-import { animate, MotionValue, useDomEvent } from "framer-motion"
-import debounce from "lodash.debounce"
 import { RefObject } from "react"
+
+import { mix } from "@popmotion/popcorn"
+import { MotionValue, animate, useDomEvent } from "framer-motion"
+import debounce from "lodash.debounce"
 
 interface Constraints {
   top: number
@@ -39,8 +40,7 @@ export function useWheelScroll(
     const currentY = y.get()
     let newY = currentY - event.deltaY
     let startedAnimation = false
-    const isWithinBounds =
-      constraints && newY >= constraints.top && newY <= constraints.bottom
+    const isWithinBounds = constraints && newY >= constraints.top && newY <= constraints.bottom
 
     if (constraints && !isWithinBounds) {
       newY = mix(currentY, newY, elasticFactor)

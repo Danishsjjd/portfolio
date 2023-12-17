@@ -8,10 +8,7 @@ interface Constraints {
 /**
  * Calculate the top/bottom scroll constraints of a full-screen element vs the viewport
  */
-export function useScrollConstraints(
-  ref: MutableRefObject<HTMLDivElement | null>,
-  measureConstraints: boolean
-) {
+export function useScrollConstraints(ref: MutableRefObject<HTMLDivElement | null>, measureConstraints: boolean) {
   const [constraints, setConstraints] = useState<Constraints>({
     top: 0,
     bottom: 0,

@@ -1,9 +1,11 @@
-import { motion, Variants } from "framer-motion"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 import { RotatingLines } from "react-loader-spinner"
-import Card from "../components/card/Card"
-import { Card as CardType, cards } from "../constants/card"
+
+import { Card as CardType, cards } from "../../constants/card"
+import Card from "../_components/card/Card"
+
+import { Variants, motion } from "framer-motion"
 
 const containerVariants: Variants = {
   whileInView: {
@@ -60,12 +62,7 @@ const Projects = ({
             viewport={{ once: true }}
           >
             {cards.map((card) => (
-              <Card
-                key={card.title}
-                {...card}
-                isSelected={isSelected === card.id}
-                setIsSelected={setIsSelected}
-              />
+              <Card key={card.title} {...card} isSelected={isSelected === card.id} setIsSelected={setIsSelected} />
             ))}
             {/* {cards.map((card) => (
               <SingleCard key={card.id} {...card} />
@@ -74,13 +71,7 @@ const Projects = ({
         </>
       ) : (
         <div className="flex items-center justify-center">
-          <RotatingLines
-            strokeColor="grey"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="40"
-            visible={true}
-          />
+          <RotatingLines strokeColor="grey" strokeWidth="5" animationDuration="0.75" width="40" visible={true} />
         </div>
       )}
     </section>
