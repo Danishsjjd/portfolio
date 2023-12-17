@@ -13,7 +13,9 @@ import Image from "next/image"
 import arrow from "@/assets/images/arrow.svg"
 import emailjs from "@emailjs/browser"
 import { ErrorMessage } from "@hookform/error-message"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import { z } from "zod"
 
 type Links = {
   title: string
@@ -56,11 +58,13 @@ const Contact = () => {
   )
 }
 
-type FormData = {
-  name: string
-  email: string
-  message: string
-}
+const formFields = z.object({
+  name: z.string({ required_error: "Please Type Your Name" }),
+  email: z.string({ required_error: "invalid email address" }).email({ message: "invalid email address" }),
+  message: z.string().min(8, { message: "Please explain your message" }),
+})
+
+type FormData = z.infer<typeof formFields>
 
 function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -69,7 +73,7 @@ function ContactForm() {
     register,
     handleSubmit,
     reset,
-  } = useForm<FormData>({})
+  } = useForm<FormData>({ resolver: zodResolver(formFields) })
 
   const onSubmit = (data: FormData) => {
     if (isLoading) return
@@ -99,39 +103,12 @@ function ContactForm() {
   return (
     <form className="my-8 space-y-1 sm:space-y-3" onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
       <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 ">
-        <Input<FormData>
-          name="name"
-          register={register}
-          title={"Enter Full Name"}
-          type="text"
-          validations={{ required: "Please Type Your Name" }}
-          errors={errors}
-        />
-        <Input<FormData>
-          name="email"
-          register={register}
-          title={"Your Email"}
-          type="email"
-          validations={{
-            required: "Enter Your email",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "invalid email address",
-            },
-          }}
-          errors={errors}
-        />
+        <Input<FormData> name="name" register={register} title={"Enter Full Name"} type="text" errors={errors} />
+        <Input<FormData> name="email" register={register} title={"Your Email"} type="email" errors={errors} />
       </div>
       <label className="block rounded-lg px-4 pb-4 pt-2 !no-underline ring-yellow focus-within:animate-bg focus-within:ring-1">
         <h3 className="pb-2 font-Lexend">Enter Message</h3>
-        <textarea
-          className={`w-full rounded-md bg-yellow/20 p-4 outline-none `}
-          {...register("message", {
-            required: "Please explain your message",
-            minLength: { message: "Explain Your Message", value: 8 },
-          })}
-          rows={5}
-        ></textarea>
+        <textarea className={`w-full rounded-md bg-yellow/20 p-4 outline-none `} rows={5} {...register("message")} />
         <p className="mt-1 text-red-300">{errors?.message?.message}</p>
       </label>
       <button
