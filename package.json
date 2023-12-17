@@ -26,6 +26,7 @@
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.6.1",
     "react-scroll": "^1.8.8",
+    "sharp": "^0.33.0",
     "sonner": "^1.2.4",
     "zod": "^3.22.4"
   },
