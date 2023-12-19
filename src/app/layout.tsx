@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     " web design",
   ],
   metadataBase: new URL("https://danishsjjd.dev"),
+  icons: "/favicon.ico",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
